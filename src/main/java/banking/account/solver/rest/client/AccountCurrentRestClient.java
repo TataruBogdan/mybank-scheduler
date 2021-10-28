@@ -13,25 +13,45 @@ public class AccountCurrentRestClient {
     @Autowired
     private RestTemplate currentRestTemplate;
 
-//    private ApplicationProperties applicationProperties;
 
     public AccountCurrentDTO getAccountCurrentByIban(String iban) {
-        AccountCurrentDTO accountCurrentDTO = currentRestTemplate.getForObject(applicationProperties.getAccountCurrentUr() + iban,
+        AccountCurrentDTO accountCurrentDTO = currentRestTemplate.getForObject("http://localhost:8200/accounts-currents"  + iban,
                 AccountCurrentDTO.class);
 
         return accountCurrentDTO;
     }
 
-    public ResponseEntity<AccountCurrentDTO> debitAccountCurrent(String iban, AmountDTO amountDTO) {
+    public ResponseEntity<AccountCurrentDTO> creditAccountCurrent(String iban, Double amount) {
 
-                                                            // ???
-        String body = "{\"iban\":\"CURR-\",\"amountDTO\":\"amountDTO\"}";
+        AmountDTO amountDTO = new AmountDTO();
+        amountDTO.setAmount(amount);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
 
-        ResponseEntity<AccountCurrentDTO> accountCurrentDebitDTO = currentRestTemplate.exchange(applicationProperties.getAccountCurrentDebitUrl() + iban, HttpMethod.PATCH, requestEntity, AccountCurrentDTO.class);
+        HttpEntity<AmountDTO> requestEntity = new HttpEntity<>(amountDTO, headers);
+
+        ResponseEntity<AccountCurrentDTO> accountCurrentCreditDTO = currentRestTemplate.exchange("http://localhost:8200/account-current/credit" + iban, HttpMethod.PATCH, requestEntity, AccountCurrentDTO.class);
+
+        return accountCurrentCreditDTO;
+
+    }
+
+
+
+    public ResponseEntity<AccountCurrentDTO> debitAccountCurrent(String iban, Double amount) {
+
+                                                            // ???
+        String body = "{\"iban\":\"CURR-\",\"amountDTO\":\"amountDTO\"}";
+        AmountDTO amountDTO = new AmountDTO();
+        amountDTO.setAmount(amount);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<AmountDTO> requestEntity = new HttpEntity<>(amountDTO, headers);
+
+        ResponseEntity<AccountCurrentDTO> accountCurrentDebitDTO = currentRestTemplate.exchange("http://localhost:8200/account-currents/debit" + iban, HttpMethod.PATCH, requestEntity, AccountCurrentDTO.class);
 
         return accountCurrentDebitDTO;
 

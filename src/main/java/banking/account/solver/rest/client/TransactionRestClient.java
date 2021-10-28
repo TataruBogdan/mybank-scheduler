@@ -60,7 +60,7 @@ public class TransactionRestClient {
         map.put("statusList", statusList);
 
         HttpEntity<SearchTransactionsResponseDTO> exchange = transactionRestTemplate.
-                postForEntity("http://localhost:8500/transactions/searsc-by-status", HttpMethod.POST, SearchTransactionsResponseDTO.class);
+                postForEntity("http://localhost:8500/transactions/search-by-status", HttpMethod.POST, SearchTransactionsResponseDTO.class);
 
         return ResponseEntity.ok(exchange.getBody().getIds());
 

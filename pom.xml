@@ -84,6 +84,11 @@
         </dependency>
 
 		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>com.mybank</groupId>
 			<artifactId>mybank-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
