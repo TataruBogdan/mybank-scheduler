@@ -1,0 +1,6 @@
+/home/bogdan/IdeaProjects/mybank-scheduler/src/main/java/banking/account/solver/rest/client/AccountCurrentRestClient.java
+/home/bogdan/IdeaProjects/mybank-scheduler/src/main/java/banking/account/solver/rest/client/TransactionRestClient.java
+/home/bogdan/IdeaProjects/mybank-scheduler/src/main/java/banking/account/solver/config/RestTemplateConfig.java
+/home/bogdan/IdeaProjects/mybank-scheduler/src/main/java/banking/account/solver/scheduler/TransactionExecuterScheduler.java
+/home/bogdan/IdeaProjects/mybank-scheduler/src/main/java/banking/account/solver/rest/client/IndividualrestClient.java
+/home/bogdan/IdeaProjects/mybank-scheduler/src/main/java/banking/account/solver/Application.java
